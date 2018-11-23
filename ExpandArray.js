@@ -6,7 +6,7 @@ function expand1 (arr) {
 }
 
 let test = [1,2,[3,[4,5,6]],[7],[8,9]];
-console.log(expand1(test));
+// console.log(expand1(test));
 
 function expand2 (arr) {
   for(let i=0; i<arr.length; i++) {
@@ -17,4 +17,16 @@ function expand2 (arr) {
   }
   return arr;
 }
-console.log(expand2(test));
+// console.log(expand2(test));
+function expand3 (arr) {
+  const re = [];
+  for (let v of arr) {
+    if (Array.isArray(v)) {
+      re.push(...expand3(v));
+    } else {
+      re.push(v);
+    }
+  }
+  return re;
+}
+console.log(expand3(test))
