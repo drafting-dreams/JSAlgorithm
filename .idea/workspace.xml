@@ -2,15 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="65a5464e-33d7-4762-9a52-c5bc65be2587" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ClassicalAlgorithm/createCurry.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ExpandObject.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Set/Set.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Set/Stringnify.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/text.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ClassicalAlgorithm/infinitCurry.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ClassicalAlgorithm/DeepCopy.js" beforeDir="false" afterPath="$PROJECT_DIR$/ClassicalAlgorithm/DeepCopy.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ExpandArray.js" beforeDir="false" afterPath="$PROJECT_DIR$/ExpandArray.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClassicalAlgorithm/createCurry.js" beforeDir="false" afterPath="$PROJECT_DIR$/ClassicalAlgorithm/createCurry.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -42,11 +36,20 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="createCurry.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="createCurry.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/ClassicalAlgorithm/createCurry.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="552">
-              <caret line="24" column="31" lean-forward="true" selection-start-line="24" selection-start-column="31" selection-end-line="24" selection-end-column="31" />
+            <state relative-caret-position="782">
+              <caret line="34" selection-start-line="34" selection-end-line="34" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="infinitCurry.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/ClassicalAlgorithm/infinitCurry.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="345">
+              <caret line="21" selection-start-line="21" selection-end-line="23" selection-end-column="44" />
             </state>
           </provider>
         </entry>
@@ -81,9 +84,11 @@
   <component name="FindInProjectRecents">
     <findStrings>
       <find>ava</find>
+      <find>evaluation</find>
     </findStrings>
     <replaceStrings>
       <replace>arr</replace>
+      <replace>func</replace>
     </replaceStrings>
   </component>
   <component name="Git.Settings">
@@ -122,6 +127,7 @@
         <option value="$PROJECT_DIR$/ClassicalAlgorithm/DeepCopy.js" />
         <option value="$PROJECT_DIR$/text.js" />
         <option value="$PROJECT_DIR$/ClassicalAlgorithm/createCurry.js" />
+        <option value="$PROJECT_DIR$/ClassicalAlgorithm/infinitCurry.js" />
       </list>
     </option>
   </component>
@@ -134,7 +140,7 @@
   <component name="NodePackageJsonFileManager">
     <packageJsonPaths />
   </component>
-  <component name="ProjectFrameBounds" extendedState="7">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="67" />
     <option name="y" value="48" />
     <option name="width" value="1364" />
@@ -155,6 +161,11 @@
               <item name="Algorithm" type="b2602c69:ProjectViewProjectNode" />
               <item name="Algorithm" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="Algorithm" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Algorithm" type="462c0819:PsiDirectoryNode" />
+              <item name="ClassicalAlgorithm" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
@@ -168,6 +179,7 @@
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="restartRequiresConfirmation" value="false" />
+    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
@@ -188,26 +200,26 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Node.js.createCurry.js">
-    <configuration name="ExpandObject.js" type="NodeJSConfigurationType" factoryName="Node.js" temporary="true" nameIsGenerated="true" path-to-js-file="ExpandObject.js" working-dir="$PROJECT_DIR$" />
+  <component name="RunManager" selected="Node.js.infinitCurry.js">
     <configuration name="Set.js" type="NodeJSConfigurationType" factoryName="Node.js" temporary="true" nameIsGenerated="true" path-to-js-file="Set.js" working-dir="$PROJECT_DIR$/Set" />
     <configuration name="createCurry.js" type="NodeJSConfigurationType" factoryName="Node.js" temporary="true" nameIsGenerated="true" path-to-js-file="createCurry.js" working-dir="$PROJECT_DIR$/ClassicalAlgorithm" />
+    <configuration name="infinitCurry.js" type="NodeJSConfigurationType" factoryName="Node.js" temporary="true" nameIsGenerated="true" path-to-js-file="infinitCurry.js" working-dir="$PROJECT_DIR$/ClassicalAlgorithm" />
     <configuration name="temp2.js" type="NodeJSConfigurationType" factoryName="Node.js" temporary="true" nameIsGenerated="true" path-to-js-file="temp2.js" working-dir="$PROJECT_DIR$" />
     <configuration name="temp.js" type="NodeJSConfigurationType" factoryName="Node.js" temporary="true" nameIsGenerated="true" path-to-js-file="temp.js" working-dir="$PROJECT_DIR$" />
     <list>
       <item itemvalue="Node.js.temp.js" />
-      <item itemvalue="Node.js.ExpandObject.js" />
       <item itemvalue="Node.js.temp2.js" />
       <item itemvalue="Node.js.Set.js" />
       <item itemvalue="Node.js.createCurry.js" />
+      <item itemvalue="Node.js.infinitCurry.js" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Node.js.infinitCurry.js" />
         <item itemvalue="Node.js.createCurry.js" />
         <item itemvalue="Node.js.temp2.js" />
         <item itemvalue="Node.js.temp.js" />
         <item itemvalue="Node.js.Set.js" />
-        <item itemvalue="Node.js.ExpandObject.js" />
       </list>
     </recent_temporary>
   </component>
@@ -256,24 +268,36 @@
       <workItem from="1540350740118" duration="1987000" />
       <workItem from="1540570740698" duration="45000" />
       <workItem from="1542876621219" duration="1386000" />
-      <workItem from="1542936547452" duration="2763000" />
+      <workItem from="1542936547452" duration="5370000" />
+      <workItem from="1543029517949" duration="7735000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="192539000" />
+    <option name="totallyTimeSpent" value="202881000" />
+  </component>
+  <component name="TodoView">
+    <todo-panel id="selected-file">
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+    <todo-panel id="all">
+      <are-packages-shown value="true" />
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1382" height="784" extended-state="7" />
+    <frame x="-8" y="-8" width="1382" height="784" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.4968017" visible="true" weight="0.16815476" />
-      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.4968017" visible="true" weight="0.15476191" />
+      <window_info anchor="bottom" id="TODO" order="6" weight="0.32972136" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" />
-      <window_info anchor="bottom" id="Version Control" order="7" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.16563468" />
+      <window_info anchor="bottom" id="Event Log" order="8" side_tool="true" />
+      <window_info anchor="bottom" id="Version Control" order="9" weight="0.32972136" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.19504644" />
+      <window_info anchor="bottom" id="Quokka" order="11" weight="0.22136223" />
       <window_info id="Structure" order="1" sideWeight="0.50319827" side_tool="true" weight="0.17410715" />
-      <window_info anchor="bottom" id="Terminal" order="7" weight="0.32972136" />
+      <window_info anchor="bottom" id="Terminal" order="10" weight="0.32972136" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4148607" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -301,15 +325,14 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/ClassicalAlgorithm/createCurry.js</url>
-          <line>27</line>
-          <properties lambdaOrdinal="-1" />
+          <line>30</line>
           <option name="timeStamp" value="109" />
         </line-breakpoint>
       </breakpoints>
       <breakpoints-dialog>
         <breakpoints-dialog />
       </breakpoints-dialog>
-      <option name="time" value="110" />
+      <option name="time" value="116" />
     </breakpoint-manager>
   </component>
   <component name="debuggerHistoryManager">
@@ -342,13 +365,6 @@
     </expressions>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/getProperty.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret selection-end-line="83" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/ClassicalAlgorithm/Zero-OneBag.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="667">
@@ -640,8 +656,15 @@
     <entry file="file://$PROJECT_DIR$/temp2.js" />
     <entry file="file://$PROJECT_DIR$/ClassicalAlgorithm/createCurry.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="552">
-          <caret line="24" column="31" lean-forward="true" selection-start-line="24" selection-start-column="31" selection-end-line="24" selection-end-column="31" />
+        <state relative-caret-position="782">
+          <caret line="34" selection-start-line="34" selection-end-line="34" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ClassicalAlgorithm/infinitCurry.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="345">
+          <caret line="21" selection-start-line="21" selection-end-line="23" selection-end-column="44" />
         </state>
       </provider>
     </entry>

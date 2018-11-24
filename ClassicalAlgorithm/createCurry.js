@@ -1,31 +1,34 @@
-function createCurry(func, arity, args) {
-  // get the length of the function
-  let ari = arity || func.length
-
-  let ar = args || []
+function createCurry(func, arity=func.length, args=[]) {
 
   let wrapper = function() {
-    let _args = [].slice.call(arguments);
-    [].push.apply(ar, _args)
+    let _args = [...arguments]
+    args.push(..._args)
 
-    if(_args.length < ari) {
-      ari -= _args.length
+    if(_args.length < arity) {
+      arity -= _args.length
 
-      return createCurry(func, ari, ar)
+      return createCurry(func, arity, args)
     }
-    return func.apply(func, args)
+    return func(...args)
   }
   return wrapper
 }
 
-function check(reg, targetString) {
-  return reg.test(targetString)
+function sum(a,b,c) {
+  return a+b+c
 }
+const currified = createCurry(sum)
 
-let _check = createCurry(check)
+console.log(currified(1)(32)(1))
 
-let checkPhone = _check(/^1[34578\d{9}$]/);
-// let checkEmail = _check(/^(\w)+(\.\w+)*@(\w)+((\.\w+)+)$/);
-
-console.log(checkPhone('183888888'));
-// checkEmail('xxxxx@test.com');
+// function check(reg, targetString) {
+//   return reg.test(targetString)
+// }
+//
+// let _check = createCurry(check)
+//
+// let checkPhone = _check(/^1[34578\d{9}$]/);
+// // let checkEmail = _check(/^(\w)+(\.\w+)*@(\w)+((\.\w+)+)$/);
+//
+// console.log(checkPhone('183888888'));
+// // checkEmail('xxxxx@test.com');
