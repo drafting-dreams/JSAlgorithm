@@ -1,9 +1,12 @@
 function dashToCamel(dashStr) {
-  return dashStr.replace(/-[a-z]/g, replacer);
+  return (
+    dashStr[0].toUpperCase() +
+    dashStr.replace(/-([a-z])/g, replacer).substring(1)
+  );
 }
 
-function replacer(match) {
-  return '-' + match[1].toUpperCase();
+function replacer(match, p) {
+  return p.toUpperCase();
 }
 
-console.log(dashToCamel('abc-def-ggg'))
+console.log(dashToCamel("abc-def-ggg"));
