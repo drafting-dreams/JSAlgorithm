@@ -1,115 +1,155 @@
-// Promise is just a state machine
+function promiseAll(promises) {
+  const n = promises.length;
+  const results = new Array(n);
+  let fulfilledCount = 0;
 
-class Promise {
+  return new Promise((resolve, reject) => {
+    promises.forEach((promise, i) => {
+      promise
+        .then((result) => {
+          results[i] = result;
+          fulfilledCount++;
+          if (fulfilledCount === n) {
+            resolve(results);
+          }
+        })
+        .catch((err) => reject(err));
+    });
+  });
+}
+
+const PENDING = 0;
+const FULFILLED = 1;
+const REJECTED = 2;
+// Promise is a state machine.
+// The function fn we passed to it, is called resolver, it can fetch the result asynchronously.
+// But this fn is not trusted, it is allowed to call both resolve and reject multi times.
+// the then method of Promise is like a event register, it accepts fulfillHandler and rejectHandler
+class MyPromise {
   constructor(fn) {
-    this.state = 0; // 0: pending, 1: resolved, 2: rejected
-    this.value = null;
+    this.state = PENDING;
+    this.result = null;
     this.handlers = [];
-    doResolve(fn, this.resolve, this.reject);
+    doResolve(fn, this._resolve, this._reject);
   }
 
-  fulfill(result) {
-    this.state = 1;
-    this.value = result;
-    this.handlers.forEach(this.handle);
-    this.handlers = [];
+  _fulfill(value) {
+    this.state = FULFILLED;
+    this.result = value;
+    this.handlers.forEach(this._handle);
   }
-  reject(reason) {
-    this.state = 2;
-    this.value = reason;
-    this.handlers.forEach(this.handle);
-    this.handlers = [];
+  s;
+
+  _reject(err) {
+    this.state = REJECTED;
+    this.result = err;
+    this.handlers.forEach(this._handle);
   }
 
-  resolve(result) {
+  _resolve(value) {
     try {
-      const then = getThen(result);
+      // Check if the value is a Promise, if it is a Promise, we can't fulfill it directly.
+      const then = getThen(value);
       if (then) {
-        doResolve(then.bind(result), this.resolve, this.reject);
-      } else {
-        this.fulfill(result);
+        this._doResolve(then.bind(value), this._resolve, this._reject);
+        return;
       }
-    } catch (ex) {
-      this.reject(ex);
-    }
+      this._fulfill(value);
+    } catch (err) {}
   }
 
-  handle(handler) {
-    if (this.state === 0) {
+  _handle(handler) {
+    if (
+      this.state === FULFILLED &&
+      typeof handler.fulfillHandler === "function"
+    ) {
+      handler.fulfillHandler(this.result);
+    } else if (
+      this.state === REJECTED &&
+      typeof handler.rejectHandler === "function"
+    ) {
+      handler.rejectHandler(this.result);
+    } else {
       this.handlers.push(handler);
-    } else if (this.state === 1 && typeof handler.onFulfilled === "function") {
-      handler.onFulfilled(this.value);
-    } else if (this.state === 2 && typeof handler.onRejected === "function") {
-      handler.onRejected(this.value);
     }
   }
 
-  done(onFulfilled, onRejected) {
-    const self = this;
-    setTimeout(() => {
-      self.handle({ onFulfilled, onRejected });
-    }, 0);
-  }
-
-  then(onFulfilled, onRejected) {
-    const self = this;
-    return new Promise(function (res, rej) {
-      self.done(
-        function (result) {
-          if (typeof onFulfilled === "function") {
+  // When implementing then method, what should be confirmed first is the props and the return value
+  // The return value is also a Promise
+  // And then is a register for doneHandlers, which means it passes in two functions fulfillHandler and rejectHandler
+  // What's more the handlers passed to then are micro tasks, _done method assures that
+  then(fulfillHandler, rejectHandler) {
+    // resolve and reject here below are functions that injected by promise machine, see in the constructor
+    return Promise((resolve, reject) => {
+      this._done(
+        (value) => {
+          if (typeof fulfillHandler === "function") {
             try {
-              return res(onFulfilled(result));
-            } catch (ex) {
-              return rej(ex);
+              // Here's the key thing, fulfillHandler could return either a value or a Promise,
+              // if it is a promise, we notice that we did distinguish promise and value in _resolve method
+              resolve(fulfillHandler(value));
+            } catch (err) {
+              reject(err);
             }
           } else {
-            return resolve(result);
+            resolve(value);
           }
         },
-        function (error) {
-          if (typeof onRejected === "function") {
+        (error) => {
+          if (typeof rejectHandler === "function") {
             try {
-              return res(onRejected(error));
-            } catch (ex) {
-              return rej(ex);
+              resolve(rejectHandler(error));
+            } catch (err) {
+              reject(err);
             }
           } else {
-            return rej(error);
+            reject(error);
           }
         }
       );
     });
   }
+
+  // On https://www.promisejs.org/implementing/, method below was using setTimeout instead of queueMicrotask,
+  // But what promises resolve really perform is like a microtask,
+  // I guess the reason why they were using setTiemout is that queueMicrotask isn't open for third party on some browsers
+  _done(onFulfilled, onRejected) {
+    queueMicrotask(() => {
+      this._handle({
+        fulfillHandler: onFulfilled,
+        rejectHandler: onRejected,
+      });
+    });
+  }
 }
 
-function getThen(value) {
-  if (value instanceof Object && typeof value.then === "function")
-    return value.then;
+function getThen(obj) {
+  if (typeof obj === "object" && typeof obj.then === "function") {
+    return obj.then;
+  }
   return null;
 }
-/**
- * Take a potentially misbehaving resolver function and make sure
- * onFulfilled and onRejected are only called once.
- *
- */
+
+// The fn function is the function we usually passed to the Promise constructor
+// This fn is not trusted, user might call onFulfilled or onRejected multitimes,
+// our doResolve is mainly responsible for the robust
 function doResolve(fn, onFulfilled, onRejected) {
   let done = false;
-  try {
-    fn(
-      (value) => {
-        if (done) return;
-        done = true;
-        onFulfilled(value);
-      },
-      (reason) => {
-        if (done) return;
-        done = true;
-        onRejected(reason);
-      }
-    );
-  } catch (ex) {
+  const wrapOnFulfilled = (value) => {
     if (done) return;
     done = true;
-    onRejected(ex);
+    onFulfilled(value);
+  };
+  const wrapOnRejected = (err) => {
+    if (done) return;
+    done = true;
+    onRejected(err);
+  };
+  try {
+    fn(wrapOnFulfilled, wrapOnRejected);
+  } catch (err) {
+    if (done) return;
+    done = true;
+    onRejected(err);
   }
 }
